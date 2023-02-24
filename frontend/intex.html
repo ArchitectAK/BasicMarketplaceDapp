@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Basic Marketplace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Basic Marketplace</h1>
+  <div id="wallet"></div>
+  <div>
+    <h2>Add new item</h2>
+    <div>
+      <input type="text" , id="new-item-name" placeholder="Item Name.." />
+      <input type="text" , id="new-asking-prices" placeholder="Asking Prices.." />
+
+      <div>
+        <button type="button" , class="btn_add">Add Item</button>
+      </div>
+    </div>
+
+    <div>
+      <h2>All Items</h2>
+      <div id="all_items">
+        <!-- Load all items -->
+      </div>
+      <div id="item-template">
+        <div class="card">
+          <div class="conatainer">
+            <strong>Item name</strong>: <span class="item-name"></span>
+            <strong>Item Creator</strong>: <span class="item-creator"></span>
+            <strong>Item Owner</strong>: <span class="item-owner"></span>
+            <strong>Asking Price</strong>: <span class="asking-price"></span>
+            <strong>Item Status</strong>: <span class="item-status"></span>
+            <button type="button" class="btn-buy" data-id="0">Buy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>
