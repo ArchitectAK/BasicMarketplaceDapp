@@ -46,4 +46,14 @@ contract BasicMarketplace {
     ) public view returns (Product memory) {
         return products[productId];
     }
+
+    function getProducts() public view returns (Product[] memory) {
+        Product[] memory productList = new Product[](numProduct);
+        for (uint256 i = 0; i < numProduct; i++) {
+            Product storage product = products[i];
+            productList[i] = product;
+        }
+
+        return productList;
+    }
 }
