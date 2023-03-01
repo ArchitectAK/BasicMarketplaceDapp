@@ -56,4 +56,10 @@ contract BasicMarketplace {
 
         return productList;
     }
+
+    function sellProduct(uint256 productId) public {
+        Product storage product = products[productId];
+        product.owner = msg.sender;
+        product.isSold = true;
+    }
 }
