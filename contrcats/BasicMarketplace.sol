@@ -37,5 +37,13 @@ contract BasicMarketplace {
             product.askingPrice,
             product.isSold
         );
+
+        numProduct++;
+    }
+
+    function getProduct(
+        uint256 productId
+    ) public view returns (Product memory) {
+        return products[productId];
     }
 }
