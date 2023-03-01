@@ -19,4 +19,23 @@ contract BasicMarketplace {
     constructor() {
         numProduct = 0;
     }
+
+    function addProduct(string memory itemName, uint256 askingPrice) public {
+        Product storage product = products[numProduct];
+
+        product.creator = msg.sender;
+        product.owner = msg.sender;
+        product.askingPrice = askingPrice;
+        product.itemName = itemName;
+        product.isSold = false;
+
+        products[numProduct] = Product(
+            numProduct,
+            product.itemName,
+            product.creator,
+            product.owner,
+            product.askingPrice,
+            product.isSold
+        );
+    }
 }
