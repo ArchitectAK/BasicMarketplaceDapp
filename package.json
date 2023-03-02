@@ -10,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "hardhat": "^2.12.7"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-waffle": "^2.0.5"
   }
 }

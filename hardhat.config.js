@@ -1,10 +1,12 @@
 /** @type import('hardhat/config').HardhatUserConfig */
 
-import "@nomiclabs/hardhat-waffle";
+require("@nomiclabs/hardhat-waffle")
 
-export const solidity = "0.8.17";
-export const networks = {
-  hardhat: {
-    chainId: 31337,
+module.exports = {
+  solidity: "0.8.17",
+  networks: {
+    hardhat:{
+      chainId: 31337
+    }
   }
 };

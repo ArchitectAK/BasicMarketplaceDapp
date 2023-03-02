@@ -1,4 +1,40 @@
 {
   "_format": "hh-sol-cache-2",
-  "files": {}
+  "files": {
+    "/Users/ankit/No/Learning/UpGrad/HardHatProjects/BasicMarketplaceDapp/contracts/BasicMarketplace.sol": {
+      "lastModificationDate": 1677754791486,
+      "contentHash": "8d2648c3b36c67759480baee26b1bd3d",
+      "sourceName": "contracts/BasicMarketplace.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.17"
+      ],
+      "artifacts": [
+        "BasicMarketplace"
+      ]
+    }
+  }
 }

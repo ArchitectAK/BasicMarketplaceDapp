@@ -1,7 +1,7 @@
-import { ethers } from "hardhat";
+const hre = require("hardhat");
 
 async function main() {
-  const BasicMarketplace = await ethers.getContractFactory("BasicMarketplace");
+  const BasicMarketplace = await hre.ethers.getContractFactory("BasicMarketplace");
 
   const basicMarketplace = await BasicMarketplace.deploy();
 
