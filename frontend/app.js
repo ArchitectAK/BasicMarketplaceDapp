@@ -61,6 +61,9 @@ App = {
   handleBuy: function (event) {
     const productId = parseInt($(event.target).data("id"));
     console.log('Buy clicked', productId);
+
+    App.contract.sellProduct(productId);
+
   }
 }
 
