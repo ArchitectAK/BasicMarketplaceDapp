@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "hardhat": "^2.12.7"
+    "hardhat": "^2.13.0"
   },
   "dependencies": {
     "@nomiclabs/hardhat-waffle": "^2.0.5"

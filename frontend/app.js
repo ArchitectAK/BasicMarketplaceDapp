@@ -1,6 +1,17 @@
 App = {
   init: async function () {
     console.log('Initializing');
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+
+    await provider.send("eth_requestAccounts", []);
+
+    const signer = provider.getSigner();
+    let userAddress = await signer.getAddress();
+
+    document.getElementById("wallet").innerText = "Your wallet address is: " + userAddress;
+
+
     $.getJSON("../sampleData.json", function (data) {
       console.log(data);
       const allItemsDiv = $("#all-items");
