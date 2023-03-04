@@ -1,4 +1,5 @@
 App = {
+  contract: {},
   init: async function () {
     console.log('Initializing');
 
@@ -11,20 +12,24 @@ App = {
 
     document.getElementById("wallet").innerText = "Your wallet address is: " + userAddress;
 
+    const resourceAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa";
 
-    $.getJSON("../sampleData.json", function (data) {
-      console.log(data);
+    $.getJSON('../artifacts/contracts/BasicMarketplace.sol/BasicMarketplace.json', function (BasicMarketplaceArtifact) {
+      const contract = new ethers.Contract(resourceAddress, BasicMarketplaceArtifact.ABI, signer);
+
+      App.contract = contract;
+
       const allItemsDiv = $("#all-items");
       const itemTemplate = $("#item-template");
-      for (let i = 0; i < data.length; i++) {
-        itemTemplate.find(".item-name").text(data[i].itemName)
-        itemTemplate.find(".item-creator").text(data[i].itemCreator)
-        itemTemplate.find(".item-owner").text(data[i].itemOwner)
-        itemTemplate.find(".asking-price").text(data[i].askingPrice)
-        itemTemplate.find(".item-status").text(data[i].isSold ? 'sold' : 'available')
-        itemTemplate.find(".btn-buy").attr("data-id", data[i].id);
+      for (let i = 0; i < BasicMarketplaceArtifact.length; i++) {
+        itemTemplate.find(".item-name").text(BasicMarketplaceArtifact[i].itemName)
+        itemTemplate.find(".item-creator").text(BasicMarketplaceArtifact[i].itemCreator)
+        itemTemplate.find(".item-owner").text(BasicMarketplaceArtifact[i].itemOwner)
+        itemTemplate.find(".asking-price").text(BasicMarketplaceArtifact[i].askingPrice)
+        itemTemplate.find(".item-status").text(BasicMarketplaceArtifact[i].isSold ? 'sold' : 'available')
+        itemTemplate.find(".btn-buy").attr("data-id", BasicMarketplaceArtifact[i].id);
 
-        if (data[i].isSold) {
+        if (BasicMarketplaceArtifact[i].isSold) {
           itemTemplate.find(".btn-buy").hide();
         } else {
           itemTemplate.find(".btn-buy").show();
@@ -38,7 +43,7 @@ App = {
 
   bindEvents: function () {
     $(document).on("click", ".btn-add", App.handleAdd);
-    $(document).on("click", ".btn-buy", {id: this.id }, App.handleBuy);
+    $(document).on("click", ".btn-buy", { id: this.id }, App.handleBuy);
   },
 
   handleAdd: function () {
