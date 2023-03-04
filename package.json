@@ -12,6 +12,8 @@
     "hardhat": "^2.13.0"
   },
   "dependencies": {
-    "@nomiclabs/hardhat-waffle": "^2.0.5"
+    "@nomiclabs/hardhat-waffle": "^2.0.5",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
   }
 }
