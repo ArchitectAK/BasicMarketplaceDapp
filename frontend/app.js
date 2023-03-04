@@ -12,31 +12,35 @@ App = {
 
     document.getElementById("wallet").innerText = "Your wallet address is: " + userAddress;
 
-    const resourceAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa";
+    const resourceAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
 
-    $.getJSON('../artifacts/contracts/BasicMarketplace.sol/BasicMarketplace.json', function (BasicMarketplaceArtifact) {
-      const contract = new ethers.Contract(resourceAddress, BasicMarketplaceArtifact.ABI, signer);
+    $.getJSON("../artifacts/contracts/BasicMarketplace.sol/BasicMarketplace.json", function (BasicMarketplaceArtifact) {
+      const contract = new ethers.Contract(resourceAddress, BasicMarketplaceArtifact.abi, signer);
 
       App.contract = contract;
 
-      const allItemsDiv = $("#all-items");
-      const itemTemplate = $("#item-template");
-      for (let i = 0; i < BasicMarketplaceArtifact.length; i++) {
-        itemTemplate.find(".item-name").text(BasicMarketplaceArtifact[i].itemName)
-        itemTemplate.find(".item-creator").text(BasicMarketplaceArtifact[i].itemCreator)
-        itemTemplate.find(".item-owner").text(BasicMarketplaceArtifact[i].itemOwner)
-        itemTemplate.find(".asking-price").text(BasicMarketplaceArtifact[i].askingPrice)
-        itemTemplate.find(".item-status").text(BasicMarketplaceArtifact[i].isSold ? 'sold' : 'available')
-        itemTemplate.find(".btn-buy").attr("data-id", BasicMarketplaceArtifact[i].id);
+      contract.getProducts().then(data => {
+        console.log(data);
 
-        if (BasicMarketplaceArtifact[i].isSold) {
-          itemTemplate.find(".btn-buy").hide();
-        } else {
-          itemTemplate.find(".btn-buy").show();
+        const allItemsDiv = $("#all-items");
+        const itemTemplate = $("#item-template");
+        for (let i = 0; i < data.length; i++) {
+          itemTemplate.find(".item-name").text(data[i].itemName)
+          itemTemplate.find(".item-creator").text(data[i].creator)
+          itemTemplate.find(".item-owner").text(data[i].owner)
+          itemTemplate.find(".asking-price").text(data[i].askingPrice)
+          itemTemplate.find(".item-status").text(data[i].isSold ? 'sold' : 'available')
+          itemTemplate.find(".btn-buy").attr("data-id", data[i].id);
+
+          if (data[i].isSold) {
+            itemTemplate.find(".btn-buy").hide();
+          } else {
+            itemTemplate.find(".btn-buy").show();
+          }
+
+          allItemsDiv.append(itemTemplate.html());
         }
-
-        allItemsDiv.append(itemTemplate.html());
-      }
+      })
     });
     return App.bindEvents();
   },
