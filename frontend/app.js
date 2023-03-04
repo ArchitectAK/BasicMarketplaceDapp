@@ -51,12 +51,16 @@ App = {
   },
 
   handleAdd: function () {
-    console.log('Add clicked')
+    console.log('Add clicked');
+    const newItemName = $("#new-item-name").val();
+    const newAskingPrice = $("#new-asking-prices").val();
+
+    App.contract.addProduct(newItemName, newAskingPrice);
   },
 
   handleBuy: function (event) {
     const productId = parseInt($(event.target).data("id"));
-    console.log('Buy clicked', productId)
+    console.log('Buy clicked', productId);
   }
 }
 
